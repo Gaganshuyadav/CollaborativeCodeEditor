@@ -1,0 +1,142 @@
+body{
+  background-color: rgb(230, 225, 225);  
+}
+*{
+  margin:0;
+  padding:0;
+  font-family: "Roboto";
+}
+
+/* scrollbar -------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 9px; 
+    height: 12px; 
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(57, 61, 90); 
+    border-radius: 10px; 
+    box-shadow: 1px 1px -10px 20px black;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(40, 45, 74); 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(31, 156, 150);
+}
+
+
+/* --------------------------------------------------  */
+
+input::placeholder{
+  color:rgb(164, 160, 160);
+}
+
+
+/* new room create button -------------------------------------------------- */
+.newIDMaker{
+margin-left: 4px;
+font-size: 14px;
+letter-spacing: 1px;
+color: rgb(9, 199, 9);
+text-decoration:underline;
+letter-spacing:1.2px;
+}
+.newIDMaker:hover{
+  background-color: rgb(9, 199, 9);
+  color: rgb(6, 98, 6);
+  border-radius: 3px;
+  font-weight: 600;
+  padding:3px;
+  box-sizing: border-box;
+}
+
+
+/* copy room button -------------------------------------------------- */
+.copyRoomId{
+  border: none;
+  padding: 7px 0px;
+  width:80%;
+  border-radius: 8px;
+  font-weight: 500;
+  color:rgb(237, 236, 236);
+  letter-spacing: 0.5px;
+  background-color: rgb(8, 122, 8);
+}
+.copyRoomId:hover{
+  background-color: rgb(35, 153, 35);
+}
+
+
+/* leave room button -------------------------------------------------- */
+.leave{
+  border:none;
+  padding: 7px 0px;
+  width:80%;
+  margin-top: 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  color:rgb(230, 229, 229);
+  background-color: rgb(177, 25, 25);
+  letter-spacing: 1px;
+}
+.leave:hover{
+  background-color: red;
+}
+
+/* editor left side -------------------------------------------------- */
+
+.editorFullPage{
+  height:calc(100vh-30px);
+}
+
+/* drawer editor left side -------------------------------------------------- */
+.drawerEditorLeftSide{
+  height:calc(100vh-30px);
+}
+
+/* codeEditor(codemirror) -------------------------------------------------- */
+
+fd{
+  color:rgb(237, 233, 233);
+}
+
+.editorArea {
+  height: 100vh; 
+}
+
+
+.editorArea .cm-editor {
+  background-color: #1C2130; 
+  color: #dbd5d5;
+}
+
+.editorArea .cm-gutter {
+  background-color: #1C2130; 
+  color: rgb(213, 211, 211); 
+}
+
+.editorArea .cm-cursor {
+  border-left: 3px solid cadetblue; 
+}
+
+
+/* responsiveness classes -------------------------------------------------- */
+
+@media screen and (max-width:700px) {
+
+.drawerEditorLeftSide{
+  height: 150vh;
+  overflow-x:hidden;
+  }
+}
+
+
+/* editor area */
+.editorArea{
+  height: 100vh;
+}
+
