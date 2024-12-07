@@ -35,11 +35,6 @@ This project is a real-time collaborative code editor built using React for the 
 - Node.js (v14 or higher)
 - npm (Node Package Manager)
 
-### Clone the Repository
-
-```bash
-git clone https://github.com/Gaganshuyadav/collaborative-code-editor.git
-cd collaborative-code-editor
 
 ## Usage
 
@@ -61,3 +56,9 @@ cd collaborative-code-editor
 - **`server.js`**: Main server file that sets up the Express server and Socket.IO.
 - **`constants/events.js`**: Contains event constants used for socket communication.
 - **`lib/helper.js`**: Contains helper functions for managing users and rooms.
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/Gaganshuyadav/collaborative-code-editor.git
+cd collaborative-code-editor
