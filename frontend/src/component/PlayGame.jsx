@@ -18,14 +18,15 @@ export default function PlayGame(){
         let height = parseInt(styles.height);
         let x=0;
         let y=0;
-        console.log(width);
+
 
         resizableEle.style.top = "50px";
         resizableEle.style.left = "100px";
 
         
         const onMouseMoveRightResize = (event)=>{
-            let dx = event.clientX ;
+            let dx = event.clientX - x;
+            x = event.clientX;
             console.log(event.clientX);
             resizableEle.style.width = `${dx}px`;
 
@@ -57,7 +58,7 @@ export default function PlayGame(){
     },[])
 
     return(
-        <div className="container" >
+        <div className="container-game" >
             <div ref={ref} className="resizable">
                 <div ref={refTop} className="resizer resizer-t"></div>
                 <div ref={refRight} className="resizer resizer-r"></div>

@@ -6,7 +6,9 @@ import { useNavigate} from "react-router-dom";
 import { toast} from "react-hot-toast";
 import { useDispatch} from "react-redux";
 import { setCurrentUser } from "../redux/features/Slices/userSlice";
-
+import { server } from "../utils/config";
+import axios from "axios";
+import { CircularProgress} from "@mui/material";
 
 export default function Home(){
 
@@ -16,6 +18,7 @@ export default function Home(){
 
   const [ roomId, setRoomId] = useState("");
   const [ username, setUsername] = useState("");
+  const [ loading, setIsLoading] = useState(false);
 
 
   const handleNewRoomCreate=()=>{
@@ -45,9 +48,25 @@ export default function Home(){
       }
   }
 
+  useEffect(()=>{
+       async function backendCheck(){
+        setIsLoading(true);
+           const res = await axios.get(server);
+           console.log(res);
+           setIsLoading(false);
+           
+       }
+       backendCheck();
+  },[]);
+
     return(
         <div style={{width:"100vw", height:"100vh", display:"flex", justifyContent:"center", alignItems:"center", backgroundColor:"rgb(45, 50, 80)"}}>
-            <Box className="container" sx={{backgroundColor:"rgb(66, 71, 105)", borderRadius:"10px", width:{xs:"90%", sm:"60%",md:"50%", lg:"35%"}, padding:"17px", boxSizing:"border-box", display:"flex", flexDirection:"column",alignItems:"center", justifyContent:"center", boxShadow:"0px 0px 17px -10px black"}}>
+          {
+            loading
+            ?
+            <CircularProgress/>
+            :
+            (<Box className="container" sx={{backgroundColor:"rgb(66, 71, 105)", borderRadius:"10px", width:{xs:"90%", sm:"60%",md:"50%", lg:"35%"}, padding:"17px", boxSizing:"border-box", display:"flex", flexDirection:"column",alignItems:"center", justifyContent:"center", boxShadow:"0px 0px 17px -10px black"}}>
                   
                   <div className="logo"  style={{ alignSelf:"start", width:"300px", height:"84px", marginTop:"8px"}}>
                       <img src={SiteLogo} style={{width:"84px", marginLeft:"30px"}}/>
@@ -66,7 +85,8 @@ export default function Home(){
                     <span className="newIDMaker" onClick={handleNewRoomCreate}>new room</span>
                   </Typography>
 
-            </Box>
+            </Box>)
+          }
         </div>
     )
 }

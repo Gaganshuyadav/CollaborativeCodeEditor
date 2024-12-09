@@ -85,6 +85,7 @@ export default function EditorPage(){
     },[socket]);
 
 
+
     return(
     
         <Grid className="editorFullPage" container={true} >
