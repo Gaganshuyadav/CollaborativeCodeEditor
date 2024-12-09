@@ -14,8 +14,9 @@ createRoot(document.getElementById('root')).render(
         <Provider store={store}>
           <App />
           <Toaster position='top-center' toastOptions={{
-            success: { duration: 5000},
-            error: { duration: 5000},
+            className: "custom-toast",
+            success: { duration: 5000, },
+            error: { duration: 5000, style: { backgroundColor:"rgb(255, 116, 139)", color:"white"}},
           }}
           /> 
         </Provider>

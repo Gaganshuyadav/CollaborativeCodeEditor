@@ -9,7 +9,7 @@ const componentSlice = createSlice({
     reducers:{
         setIsLeaveGroup: ( state, action)=>{
             state.isLeaveGroup = action.payload;
-        }
+        },
     },
 })
 

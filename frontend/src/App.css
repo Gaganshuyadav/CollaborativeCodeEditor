@@ -24,8 +24,9 @@ body{
     border-radius: 10px;
 }
 
+
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(31, 156, 150);
+    background-color: rgb(31, 156, 150);
 }
 
 
@@ -100,18 +101,17 @@ letter-spacing:1.2px;
 
 /* codeEditor(codemirror) -------------------------------------------------- */
 
-fd{
-  color:rgb(237, 233, 233);
-}
 
 .editorArea {
-  height: 100vh; 
+  height: 88.5vh !important;
+  padding:0px !important;
 }
 
 
 .editorArea .cm-editor {
   background-color: #1C2130; 
   color: #dbd5d5;
+  height: 88.5vh !important;
 }
 
 .editorArea .cm-gutter {
@@ -139,4 +139,3 @@ fd{
 .editorArea{
   height: 100vh;
 }
-

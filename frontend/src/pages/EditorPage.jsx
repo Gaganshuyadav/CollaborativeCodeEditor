@@ -7,7 +7,7 @@ import Editor from "../component/Editor";
 import { useDispatch, useSelector} from "react-redux";
 import { setAllUsers} from "../redux/features/Slices/userSlice";
 import { getSocket} from "../lib/Socket.jsx";
-import { CODE_SYNC, DISCONNECT, JOINED, LEAVE} from "../lib/socketEvents.jsx";
+import { CODE_SYNC, DISCONNECT, JOINED, LEAVE, SINGLE_USER_JOIN_AT_STARTING_GIVE_PREVIOUS_DATA} from "../lib/socketEvents.jsx";
 import { toast} from "react-hot-toast";
 
 export default function EditorPage(){
@@ -17,7 +17,7 @@ export default function EditorPage(){
     //use for current code
     let codeRef = useRef(`// Welcome to CodeMirror! 
 // Type your code below, or paste existing code to get started.`);
-
+    
     const dispatch = useDispatch();
     const socket = getSocket();
 
@@ -41,6 +41,11 @@ export default function EditorPage(){
         }
       
        dispatch( setAllUsers(data.allRoomUsers));
+
+        //a single user exists in room then i get the code from thier previous work and if multiuser then i dont need to send the data , cause sync method will do it
+        if(data.allRoomUsers.length < 2){
+            socket.emit(SINGLE_USER_JOIN_AT_STARTING_GIVE_PREVIOUS_DATA, { roomId: data.roomId , socketId: data.socketId, onlySingleUser: "single user at start"});
+        }
 
     };
 
@@ -82,14 +87,14 @@ export default function EditorPage(){
 
     return(
     
-        <Grid className="editorFullPage" container={true} sx={{position:"relative"}}>
+        <Grid className="editorFullPage" container={true} >
 
             {/* this is for devices have size md to xl -----------------------*/}
             <Grid size={{xs:0,md:3}} sx={{ backgroundColor:"rgb(45, 50, 80)",display:{xs:"none",md:"block"}}} >
                 <LeftSide/>
             </Grid>
 
-            <Grid size={{xs:12,md:9}} sx={{backgroundColor:"rgb(66, 71, 105)"}}>
+            <Grid size={{xs:12,md:9}} sx={{backgroundColor:"rgb(66, 71, 105)", overflowY:"scroll"}}>
                 <Editor onCodeChangeCurrentCodeForNewJoin={handleCurrentCodeForNewJoin}/>
             </Grid>
 

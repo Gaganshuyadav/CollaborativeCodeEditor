@@ -4,7 +4,7 @@ const app = express();
 import dotenv from "dotenv";
 import cors from "cors";
 import { Server} from "socket.io";
-import { CODE_CHANGE, CODE_SYNC, DISCONNECT, JOIN, JOINED, LEAVE} from "./constants/events.js";
+import { CODE_CHANGE, CODE_SYNC, DISCONNECT, JOIN, JOINED, LEAVE, SINGLE_USER_JOIN_AT_STARTING_GIVE_PREVIOUS_DATA} from "./constants/events.js";
 import { getAllRoomUsers, getSocketIdsForEachUserBasedOnRoomId } from "./lib/helper.js";
 dotenv.config();
 
@@ -28,7 +28,8 @@ app.get("/",(req,res)=>{
     })
 })
 
-const allUsers = new Map();
+const allUsers = new Map();   //keys are socketId of individual User
+const codeList = new Map();   //keys are roomId
 
 // socket connection-------
 io.on("connection", ( socket)=>{
@@ -42,14 +43,18 @@ io.on("connection", ( socket)=>{
         //set new user
         allUsers.set( socket.id , { name, roomId});
 
+        
+
         //get all users id from room
         const roomAllIds = getSocketIdsForEachUserBasedOnRoomId(socket,roomId);
 
         //get all users information from map using roomAllIds
         const allRoomUsers = getAllRoomUsers( allUsers, roomAllIds); 
-
+    
+            
         //notify others , for new user and set values for new user
-        io.to(roomAllIds).emit(JOINED, { allRoomUsers, username: name, socketId: socket.id });
+        io.to(roomAllIds).emit(JOINED, { allRoomUsers, username: name, socketId: socket.id, roomId });
+        
 
     });
 
@@ -102,6 +107,9 @@ io.on("connection", ( socket)=>{
     //(4). code is changing when user writes
     socket.on(CODE_CHANGE, ({ name, roomId, code})=>{
 
+        //when users writing the code we set code in maps
+        codeList.set(roomId,code);
+
         //this means that the event occurs to everyone in the room without the current user
         socket.in(roomId).emit(CODE_CHANGE, { username: name, socketId: socket.id, roomId, code});
 
@@ -115,6 +123,19 @@ io.on("connection", ( socket)=>{
         }
         
     })
+
+
+     //(6). a single user exists in room then i get the code from thier previous work and if multiuser then i dont need to send the data , cause sync method will do it
+     
+     socket.on(SINGLE_USER_JOIN_AT_STARTING_GIVE_PREVIOUS_DATA, ( { roomId, socketId, onlySingleUser})=>{
+
+            let code = codeList.get(roomId);
+        
+            io.to(roomId).emit(SINGLE_USER_JOIN_AT_STARTING_GIVE_PREVIOUS_DATA, { roomId, previousStoredCode: code});
+
+     });
+            
+        
 
 
 
