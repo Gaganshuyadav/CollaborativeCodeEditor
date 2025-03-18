@@ -13,8 +13,14 @@ This project is a real-time collaborative code editor built using React for the 
 - **Responsive Design**: The application is designed to work on both desktop and mobile devices.
 
 ## Screen View
+
+# ScreenShot 1
 ![Code Editor 1](./frontend/public/screenshots/screen-collabcodeeditor-1.png)
+
+# ScreenShot 2
 ![Code Editor 2](./frontend/public/screenshots/screen-collabcodeeditor-2.png)
+
+# ScreenShot 3
 ![Code Editor 3](./frontend/public/screenshots/screen-collabcodeeditor-3.png)
 
 
