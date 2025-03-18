@@ -12,6 +12,12 @@ This project is a real-time collaborative code editor built using React for the 
 - **Multi-language Support**: Users can select from various programming languages such as Java, JavaScript, Python, C#, C++, and more for their coding sessions.
 - **Responsive Design**: The application is designed to work on both desktop and mobile devices.
 
+## Screen View
+![Code Editor 1](./images/screen-collabcodeeditor-1.png)
+![Code Editor 2](./images/screen-collabcodeeditor-2.png)
+![Code Editor 3](./images/screen-collabcodeeditor-3.png)
+
+
 ## Technologies Used
 
 ### Frontend
@@ -44,20 +50,6 @@ This project is a real-time collaborative code editor built using React for the 
 3. Start coding! Changes made by any user will be reflected in real-time for all users in the room.
 4. Select the programming language you want to use for coding.
 
-## Code Structure
-
-### Frontend
-
-- **`src/components`**: Contains React components for the application.
-- **`src/redux`**: Contains Redux slices and store configuration.
-- **`src/lib`**: Contains utility functions and socket connection logic.
-- **`src/pages`**: Contains page components for different routes.
-
-### Backend
-
-- **`server.js`**: Main server file that sets up the Express server and Socket.IO.
-- **`constants/events.js`**: Contains event constants used for socket communication.
-- **`lib/helper.js`**: Contains helper functions for managing users and rooms.
 
 ### Clone the Repository
 

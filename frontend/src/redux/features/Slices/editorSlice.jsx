@@ -12,11 +12,11 @@ const editorSlice = createSlice({
         },
         setIsCodeRunLoading: (state, action)=>{
             state.isCodeRunLoading  = action.payload;
-        },
+        }
     }
 })
 
-export const { setResponseOutput, setIsCodeRunLoading} = editorSlice.actions;
+export const { setResponseOutput, setIsCodeRunLoading } = editorSlice.actions;
 
 export default editorSlice.reducer;
 

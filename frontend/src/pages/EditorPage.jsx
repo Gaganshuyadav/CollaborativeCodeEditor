@@ -23,9 +23,9 @@ export default function EditorPage(){
 
     const { user} = useSelector( state=>state.user);
 
-    //function for set current data , which is send when new user jjoin
-    const handleCurrentCodeForNewJoin=(code)=>{
-        codeRef.current = code;
+    //function for set current data , which is send when new user join
+    const handleCurrentCodeForNewJoin=(data)=>{
+        codeRef.current = data;
     }
 
     //listen for new user joined and send current editor ref for code------------------------
@@ -37,7 +37,7 @@ export default function EditorPage(){
             toast.success(`${data.username} joined the room`);
                 
                 //when the new user join ,we want to sync the current code to the new user editor
-                socket.emit(CODE_SYNC, { socketId: data.socketId , code: codeRef.current });
+                socket.emit(CODE_SYNC, { socketId: data.socketId , code: codeRef.current.text, selectedLanguage: codeRef.current.selectedLanguage  });
         }
       
        dispatch( setAllUsers(data.allRoomUsers));
@@ -112,13 +112,13 @@ export default function EditorPage(){
             {
                 openDrawer
                 ?
-                (< Box sx={{ position:"fixed",top:"25px", right:"15px", display:{xs:"block",md:"none"}  }}>
+                (< Box sx={{ position:"fixed",top:"0px", left:"15px", zIndex:5, display:{xs:"block",md:"none"}  }}>
                     <IconButton onClick={()=>{setOpenDrawer(false)}}>
                         <Close sx={{fontSize:"30px", color:"rgb(27, 233, 233)"}} />
                     </IconButton>
                 </Box>)
                 :
-                (<Box sx={{ position:"fixed",top:"25px", right:"15px", display:{xs:"block",md:"none"}  }}>
+                (<Box sx={{ position:"fixed",top:"0px", left:"15px", zIndex:5, display:{xs:"block",md:"none"}  }}>
                     <IconButton onClick={()=>{setOpenDrawer(true)}}>
                         <Menu sx={{fontSize:"30px", color:"rgb(23, 233, 233)"}} />
                     </IconButton>

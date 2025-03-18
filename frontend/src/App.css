@@ -36,6 +36,20 @@ input::placeholder{
   color:rgb(164, 160, 160);
 }
 
+/* ------------------------------------------------------- */
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 120px;
+  height: 20px;
+  -webkit-mask:linear-gradient(90deg,#000 70%,#0000 0) 0/20%;
+  background:
+   linear-gradient(#000 0 0) 0/0% no-repeat
+   #ddd;
+  animation: l4 2s infinite steps(6);
+}
+@keyframes l4 {
+    100% {background-size:120%}
+}
 
 /* new room create button -------------------------------------------------- */
 .newIDMaker{
@@ -59,7 +73,9 @@ letter-spacing:1.2px;
 /* copy room button -------------------------------------------------- */
 .copyRoomId{
   border: none;
-  padding: 7px 0px;
+  height: 31px;
+  position: relative;
+  z-index: 5;
   width:80%;
   border-radius: 8px;
   font-weight: 500;
@@ -76,6 +92,8 @@ letter-spacing:1.2px;
 .leave{
   border:none;
   padding: 7px 0px;
+  position: relative;
+  z-index: 5;
   width:80%;
   margin-top: 14px;
   border-radius: 8px;
@@ -123,6 +141,37 @@ letter-spacing:1.2px;
   border-left: 3px solid cadetblue; 
 }
 
+/* code output resizer-------------------------------------------------------- */
+.output-resizer{
+  width:100%;
+  height:8px;
+  position: relative;
+  top: 0px;
+  left:0px;
+  z-index: 4;
+  cursor: n-resize;
+}
+
+.output-resizer:hover{
+  background-color: blue;
+
+}
+
+.bin-icon{
+  position: absolute;
+  text-align: center;
+  top: 10px; 
+  display: flex;
+  padding: 6px;
+  z-index: 4;
+  right: 10px;
+  color:white;
+  border: 1px solid white;
+}
+.bin-icon:hover{
+  color: rgb(2, 5, 5); 
+  border: 1px solid rgb(31, 156, 150);
+}
 
 /* responsiveness classes -------------------------------------------------- */
 
@@ -133,6 +182,7 @@ letter-spacing:1.2px;
   overflow-x:hidden;
   }
 }
+
 
 
 /* editor area */
